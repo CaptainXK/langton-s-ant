@@ -28,6 +28,12 @@ class Pos:
         self.x = _x
         self.y = _y
         self.dir = UP
+
+    def check_pos_valid(self, _X, _Y):
+        if self.x < 0 or self.x >= _X or self.y < 0 or self.y >= _Y:
+            return 1
+        else:
+            return 0
     
     def _do_move_(self, _dir_):
         #towards up
@@ -66,7 +72,6 @@ class Pos:
                 self.x -= 1
                 self.dir = UP
 
-
 class Area:
     _map_=[[]]    
 
@@ -96,14 +101,7 @@ def init_draw(tk, canvas, label, X, Y):
     print("Draw %d:%d map"%(X, Y))
     label.config(text=str(0))
     label.pack()#.pack() is used to control the presentation of component
-    
     canvas.pack()
-
-    # canvas.create_rectangle(BASE_X, BASE_Y, (X) * 5, (Y) * 5, fill='white', width=1)
-
-    # tk.mainloop()
-
-    # exit(1)
 
     for i in range(0, X-1, 1):
         for j in range(0, Y-1, 1):

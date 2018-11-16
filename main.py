@@ -1,8 +1,8 @@
 import os
 from draw_map import *
 
-X=201
-Y=201
+X=151
+Y=151
 
 def _move_(tk, canvas, label, _map, _cur, step):
     if _map.get_color(_cur) == WHITE:
@@ -23,15 +23,15 @@ def _main_():
     cur_map = Area(X, Y)
 
     tk = Tk()
-    canvas = Canvas(tk, width = 5 * X, height = 5 * X)
-    label = Label(tk, fg='green')
+    canvas = Canvas(tk, width = 5 * X, height = 5 * Y, bg='red')
+    label = Label(tk, fg='white', bg='black', width=10)
     init_draw(tk, canvas, label, X, Y)
 
     cur_pos.set_pos( int(X/2), int(Y/2) )
 
     # cur_map.show()
 
-    while idx < 13000:
+    while idx < 12000:
         # print("%dth move:"%(idx+1))
         _move_(tk, canvas, label, cur_map, cur_pos, idx+1)
         idx += 1

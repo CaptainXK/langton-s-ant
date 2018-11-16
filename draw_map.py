@@ -12,6 +12,8 @@ LEFT=3
 COLOR = ['white', 'black']
 INIT_COL = 0
 
+BASE_X=BASE_Y=4
+
 class Pos:
     x=0
     y=0
@@ -93,15 +95,20 @@ def init_draw(tk, canvas, label, X, Y):
 
     print("Draw %d:%d map"%(X, Y))
     label.config(text=str(0))
-    label.pack()
+    label.pack()#.pack() is used to control the presentation of component
     
     canvas.pack()
 
+    # canvas.create_rectangle(BASE_X, BASE_Y, (X) * 5, (Y) * 5, fill='white', width=1)
 
-    for i in range(X):
-        for j in range(Y):
-            x_lu = i * 5 
-            y_lu = j * 5
+    # tk.mainloop()
+
+    # exit(1)
+
+    for i in range(0, X-1, 1):
+        for j in range(0, Y-1, 1):
+            x_lu = i * 5 + BASE_X
+            y_lu = j * 5 + BASE_Y
             canvas.create_rectangle(x_lu, y_lu, x_lu + 5, y_lu + 5, fill='white')
 
     tk.update()    
@@ -111,8 +118,8 @@ def do_draw_map(tk, canvas, label, _map, _x, _y, step):
     label.config(text=str(step) + ' step')
 
     #define left-up pos
-    x_lu = _x * 5 
-    y_lu = _y * 5
+    x_lu = _x * 5 + BASE_X
+    y_lu = _y * 5 + BASE_Y
     fill_col = 'red'
     if _map.show_color(_x, _y) == BLACK:
         fill_col = 'black'

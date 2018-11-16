@@ -1,8 +1,8 @@
 import os
 from draw_map import *
 
-X=151
-Y=151
+X=101
+Y=101
 
 def _move_(tk, canvas, label, _map, _cur, step):
     if _map.get_color(_cur) == WHITE:
@@ -13,6 +13,10 @@ def _move_(tk, canvas, label, _map, _cur, step):
         _map.switch_color(_cur)
         do_draw_map(tk, canvas, label, _map, _cur.x, _cur.y, step)
         _cur._do_move_(LEFT)
+    
+    if _cur.check_pos_valid(X, Y) == 1:
+        print("arrive board")
+        exit(0)
 
 def clear():
     os.system('cls')
